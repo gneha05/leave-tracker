@@ -5,9 +5,11 @@ import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
 import { ManageLeaveComponent } from './manage-leave/manage-leave.component';
 import { HolidayCalenderComponent } from './holiday-calender/holiday-calender.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path:"" , component:DashboardComponent},
+  {path:"login" , component:LoginComponent},
   {path:"dashboard" , component:DashboardComponent},
   {path:"apply-leave" , component:ApplyLeaveComponent},
   {path:"manage-leave" , component:ManageLeaveComponent},
