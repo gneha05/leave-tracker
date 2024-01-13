@@ -12,6 +12,24 @@ router.get('/employees' , async(req,res,next)=>{
     }
 });
 
+router.get('/totalLeaves' , async(req,res,next)=>{
+    try {
+        let leaves=await userService.getLeaves();
+        res.send(leaves);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get('/holidays' , async(req,res,next)=>{
+    try {
+        let holidays=await userService.getHolidays();
+        res.send(holidays);
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get('/')
 
 module.exports=router;

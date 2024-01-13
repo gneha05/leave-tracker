@@ -285,12 +285,21 @@ user={};
 user.setUpDb=async()=>{
     let user=await connection.getEmpData();
     await user.deleteMany();
-
     let userdata=await user.insertMany(empDB);
-    if(userdata){
-        return userdata;
+
+    let leaves=await connection.getTotalLeavesData();
+    await leaves.deleteMany();
+    let leaveData=await leaves.insertMany(totalLeavesDB);
+
+    let holidays=await connection.getHolidayData();
+    await holidays.deleteMany();
+    let holidayData=await holidays.insertMany(holidayCalendarDB);
+
+
+    if (userdata && leaveData && holidayData) {
+      return { userdata, leaveData, holidayData };
     }else{
-        let err=new Error("EMployees insertion failed");
+        let err=new Error("Employees insertion failed");
         err.status=400;
         throw err;
     }
@@ -305,6 +314,28 @@ user.getAllUsers = async()=>{
         let err=new Error("Employess not found..");
         throw err;
     }
+};
+
+user.getTotalLeaves=async()=>{
+  let model=await connection.getTotalLeavesData();
+  let data=await model.find({} , {_id:0});
+  if(data){
+    return data;
+  }else{
+    let err=new Error("Employess not found..");
+    throw err;
+}
+}
+
+user.getHolidayList=async()=>{
+  let model=await connection.getHolidayData();
+  let data=await model.find({} , {_id:0});
+  if(data){
+    return data;
+  }else{
+    let err=new Error("Employess not found..");
+    throw err;
+}
 }
 
 module.exports=user;

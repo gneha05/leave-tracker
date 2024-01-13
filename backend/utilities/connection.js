@@ -90,28 +90,28 @@ collection.getEmpData = async()=>{
 //     }
 // }
 
-// collection.getTotalLeavesData = async()=>{
-//     try {
-//         await mongoose.connect( url );
-//         let totalLeaveModel = await mongoose.model("TotalLeaves" , totalLeavesSchema);
-//         return totalLeaveModel;
-//     } catch (err) {
-//         let error=new Error("Could not connect to DB");
-//         error.status=500;
-//         throw error;
-//     }
-// }
+collection.getTotalLeavesData = async()=>{
+    try {
+        await mongoose.connect( url );
+        let totalLeaveModel = await mongoose.model("TotalLeaves" , totalLeavesSchema);
+        return totalLeaveModel;
+    } catch (err) {
+        let error=new Error("Could not connect to DB");
+        error.status=500;
+        throw error;
+    }
+}
 
-// collection.getHolidayData = async()=>{
-//     try {
-//         await mongoose.connect(url);
-//         let holidayModel = await mongoose.model("Holidays" , holidaySchema);
-//         return holidayModel;
-//     } catch (err) {
-//         let error=new Error("Could not connect to DB");
-//         error.status=500;
-//         throw error;
-//     }
-// }
+collection.getHolidayData = async()=>{
+    try {
+        await mongoose.connect(url);
+        let holidayModel = await mongoose.model("Holidays" , holidaySchema);
+        return holidayModel;
+    } catch (err) {
+        let error=new Error("Could not connect to DB");
+        error.status=500;
+        throw error;
+    }
+}
 
 module.exports=collection;

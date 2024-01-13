@@ -15,7 +15,7 @@ app.use('/setUpDb' , async(req,res)=>{
         let data=await dbsetup.setUpDb();
         res.send(data);
     } catch (error) {
-        console,log(error);
+        console.log(error);
         res.send("Error 1");
     }
 })

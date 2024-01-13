@@ -13,4 +13,26 @@ userDb.getUsers=async()=>{
     }
 };
 
+userDb.getLeaves=async()=>{
+    let leaves=await userData.getTotalLeaves();
+    if(leaves){
+        return leaves;
+    }else{
+        let err=new Error("Error occured in getLeaves of userData service...");
+        err.status=401;
+        throw err;
+    }
+}
+
+userDb.getHolidays=async()=>{
+    let holidays=await userData.getHolidayList();
+    if(holidays){
+        return holidays;
+    }else{
+        let err=new Error("Error occured in getHolidays of userData service...");
+        err.status=401;
+        throw err;
+    }
+}
+
 module.exports=userDb;
