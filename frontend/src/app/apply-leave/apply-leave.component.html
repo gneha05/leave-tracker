@@ -1,1 +1,70 @@
-<p>apply-leave works!</p>
+<div>
+    <div class="max-w-2xl ml-10 bg-white p-6">
+    <form>
+        <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        
+            <div class="sm:col-span-6">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="managerName">Managers Name :</label>
+                <div class="mt-2">
+                <input type="text" id="managerName" formControlName="managerName" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+            </div>
+
+        <div class="sm:col-span-3">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveType">Type of leave :</label>
+                <div class="mt-2">
+                <select id="leaveType" name="leaveType" autocomplete="leave-type" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                    <!-- <option></option> -->
+                    <option class="text-base font-semibold">United States</option>
+                    <option class="text-base font-semibold">Canada</option>
+                    <option class="text-base font-semibold">Mexico</option>
+                  </select>
+            </div>
+          </div>
+
+        <div class="sm:col-span-3">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveBal">Leave balance :</label><div class="mt-2">
+            <input type="text" id="leaveBal" formControlName="leaveBal" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            </div>
+          </div>
+
+        <div class="sm:col-span-3">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="fromDate">From date :</label>
+            <div class="mt-2">
+            <input placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" type="date" id="fromDate" formControlName="fromDate" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+
+        <div class="sm:col-span-3">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="toDate">To date :</label>
+            <div class="mt-2">
+            <input placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" type="date" id="toDate" formControlName="toDate" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            </div>
+          </div>
+
+       
+
+        <div class="sm:col-span-6">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="noOfDays">Days(s) :</label>
+                <div class="mt-2">
+                <input type="text" id="noOfDays" formControlName="noOfDays" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+        </div>
+
+        <div class="sm:col-span-6">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="remarks">Remarks :</label>
+                <div class="mt-2">
+                <input type="text" id="remarks" formControlName="remarks" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+        </div>
+  
+        
+          <button type="submit" class="bg-cyan-800 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
+          <button type="button" class="border-2 border-cyan-800 text-cyan-800 hover:bg-gray-200 font-bold py-2 px-4 rounded">
+            Clear
+        </button></div>
+    </form>
+</div>
+</div>

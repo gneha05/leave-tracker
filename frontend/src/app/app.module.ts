@@ -12,6 +12,11 @@ import { ManageLeaveComponent } from './manage-leave/manage-leave.component';
 import { HolidayCalenderComponent } from './holiday-calender/holiday-calender.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { JsonPipe } from '@angular/common';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,11 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    JsonPipe
   ],
   providers: [
     provideClientHydration()

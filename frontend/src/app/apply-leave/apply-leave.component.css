@@ -1,0 +1,15 @@
+/* Apply custom styling to the dropdown options */
+select {
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* For Chrome, Safari, and Opera */
+  padding: 0.5rem 1rem; /* Adjust padding as needed */
+}
+
+/* Style the dropdown arrow (if supported) */
+select::after {
+  content: '\25BC'; /* Unicode character for a down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
