@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { JsonPipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { JsonPipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    JsonPipe
+    JsonPipe,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration()

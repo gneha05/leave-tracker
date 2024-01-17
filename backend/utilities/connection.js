@@ -32,7 +32,7 @@ const employeeSchema=new Schema({
         pending:Number,
         rejected:Number
     },
-    leaveHistory:{
+    leaveHistory:[{
         leaveId:String,
         leaveType:String,
         from:Date,
@@ -40,7 +40,7 @@ const employeeSchema=new Schema({
         noOfdays:Number,
         remark:String,
         status:String
-    }
+    }]
 
 } , {collection :"Employees" , timestamps:true});
 

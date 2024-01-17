@@ -1,6 +1,6 @@
 import { Component  } from '@angular/core';
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
 @Component({
@@ -10,5 +10,7 @@ import { JsonPipe } from '@angular/common';
 })
 export class ApplyLeaveComponent  {
   model!: NgbDateStruct;
+
+  public leaveAppForm : FormGroup =new FormGroup({});
 
 }

@@ -1,7 +1,7 @@
 <div>
     <div class="max-w-2xl ml-10 bg-white p-6">
     <form>
-        <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
         
             <div class="sm:col-span-6">
             <label class="block text-base font-semibold leading-6 text-gray-900" for="managerName">Managers Name :</label>
@@ -14,10 +14,13 @@
             <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveType">Type of leave :</label>
                 <div class="mt-2">
                 <select id="leaveType" name="leaveType" autocomplete="leave-type" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                    <!-- <option></option> -->
-                    <option class="text-base font-semibold">United States</option>
-                    <option class="text-base font-semibold">Canada</option>
-                    <option class="text-base font-semibold">Mexico</option>
+                  <option disabled selected style="font-style: italic;">---Select an option---</option>
+
+                    <option>Paid Leave</option>
+                    <option>Sick Leave</option>
+                    <option>Maternity Leave</option>
+                    <option>Unpaid Leave</option>
+                    <option>Special Leave</option>
                   </select>
             </div>
           </div>

@@ -1,1 +1,25 @@
-<p>manage-leave works!</p>
+<div class="conatiner px-8 py-4">
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr class="bg-gray-300 border">
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase border-1">From</th>
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase">To</th>
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase">Days(s)</th>
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase">Leave Type</th>
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase">Status</th>
+                <th scope="col" class="px-6 py-3 text-left text-base font-semibold tracking-wider uppercase">Remarks</th>
+            </tr>
+        </thead>
+    
+        <tbody class="bg-white divide-y divide-gray-400">
+            <tr *ngFor="let data of leaveHistory" class="{{ leaveHistory.indexOf(data) % 2 === 0 ? 'bg-white' : 'bg-gray-200 hover:bg-gray-100' }}">
+                <td class="px-6 py-4 whitespace-nowrap">{{ data.from| date:'dd-MM-yyyy'  }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ data.to | date:'dd-MM-yyyy' }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">yes</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ data.leaveType }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ data.status }}</td>
+                <td class="px-6 py-4 whitespace-nowrap">{{ data.remark }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

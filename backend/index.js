@@ -1,12 +1,14 @@
 const express=require('express');
 const dbsetup=require('./model/dbSetUp');
 const bodyParser=require('body-parser');
-
+const cors=require('cors');
 const app=express();
 
 const router=require('./routes/api');
 
+app.use(cors());
 app.use(bodyParser.json());
+
 app.use('/',router);
 
 app.use('/setUpDb' , async(req,res)=>{
