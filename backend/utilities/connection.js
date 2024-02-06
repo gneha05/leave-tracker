@@ -78,17 +78,17 @@ collection.getEmpData = async()=>{
     }
 }
 
-// collection.getManagerData = async()=>{
-//     try {
-//         await mongoose.connect( url);
-//         let managerModel = await mongoose.model("Managers" , managersSchema);
-//         return managerModel;
-//     } catch (err) {
-//         let error=new Error("Could not connect to DB");
-//         error.status=500;
-//         throw error;
-//     }
-// }
+collection.getManagerData = async()=>{
+    try {
+        await mongoose.connect(url);
+        let managerModel = await mongoose.model("Managers" , managersSchema);
+        return managerModel;
+    } catch (err) {
+        let error=new Error("Could not connect to DB");
+        error.status=500;
+        throw error;
+    }
+}
 
 collection.getTotalLeavesData = async()=>{
     try {

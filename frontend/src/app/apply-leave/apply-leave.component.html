@@ -1,49 +1,45 @@
 <div>
     <div class="max-w-2xl ml-10 bg-white p-6">
-    <form>
+    <form [formGroup]="leaveAppForm">
         <div class="grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
         
             <div class="sm:col-span-6">
             <label class="block text-base font-semibold leading-6 text-gray-900" for="managerName">Managers Name :</label>
                 <div class="mt-2">
-                <input type="text" id="managerName" formControlName="managerName" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input value="managersName" type="text" id="managerName" formControlName="managerName" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>
 
         <div class="sm:col-span-3">
             <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveType">Type of leave :</label>
                 <div class="mt-2">
-                <select id="leaveType" name="leaveType" autocomplete="leave-type" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                <select (change)="onLeaveTypeChange($event)" id="leaveType" name="leaveType" autocomplete="leave-type" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                   <option disabled selected style="font-style: italic;">---Select an option---</option>
+                  <option *ngFor="let leaveType of leaveItems" [value]="leaveType">{{ leaveType }}</option>
 
-                    <option>Paid Leave</option>
-                    <option>Sick Leave</option>
-                    <option>Maternity Leave</option>
-                    <option>Unpaid Leave</option>
-                    <option>Special Leave</option>
                   </select>
             </div>
           </div>
 
         <div class="sm:col-span-3">
-            <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveBal">Leave balance :</label><div class="mt-2">
-            <input type="text" id="leaveBal" formControlName="leaveBal" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="leaveBalance">Leave balance :</label><div class="mt-2">
+            <input type="text" id="leaveBalance" formControlName="leaveBalance" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             </div>
           </div>
 
         <div class="sm:col-span-3">
-            <label class="block text-base font-semibold leading-6 text-gray-900" for="fromDate">From date :</label>
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="from">From date :</label>
             <div class="mt-2">
-            <input placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" type="date" id="fromDate" formControlName="fromDate" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            <input [min]="min" [max]="max" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modelFrom" ngbDatepicker #dFrom="ngbDatepicker" type="date" id="from" formControlName="from" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dFrom.toggle()" type="button"></button>
             </div>
           </div>
 
         <div class="sm:col-span-3">
-            <label class="block text-base font-semibold leading-6 text-gray-900" for="toDate">To date :</label>
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="to">To date :</label>
             <div class="mt-2">
-            <input placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" type="date" id="toDate" formControlName="toDate" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            <input [min]="min" [max]="max" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="modelTo" ngbDatepicker #dTo="ngbDatepicker" type="date" id="to" formControlName="to" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dTo.toggle()" type="button"></button>
             </div>
           </div>
 
@@ -57,15 +53,15 @@
         </div>
 
         <div class="sm:col-span-6">
-            <label class="block text-base font-semibold leading-6 text-gray-900" for="remarks">Remarks :</label>
+            <label class="block text-base font-semibold leading-6 text-gray-900" for="remark">Remarks :</label>
                 <div class="mt-2">
-                <input type="text" id="remarks" formControlName="remarks" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input type="text" id="remark" formControlName="remark" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
         </div>
   
         
-          <button type="submit" class="bg-cyan-800 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
-          <button type="button" class="border-2 border-cyan-800 text-cyan-800 hover:bg-gray-200 font-bold py-2 px-4 rounded">
+          <button (click)="submitForm(this.leaveAppForm.value)" [disabled]="!leaveAppForm.valid || leaveAppForm.get('leaveBalance')?.value<=0 || (leaveAppForm.get('noOfDays')?.value > leaveAppForm.get('leaveBalance')?.value)" type="submit" class="bg-cyan-800 hover:bg-cyan-900 text-white font-bold py-2 px-4 rounded">Submit</button>
+          <button (click)="clearForm()" type="button" class="border-2 border-cyan-800 text-cyan-800 hover:bg-gray-200 font-bold py-2 px-4 rounded">
             Clear
         </button></div>
     </form>

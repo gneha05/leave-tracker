@@ -4,7 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SideNavigationComponent } from './side-navigation/side-navigation.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ApplyLeaveComponent } from './apply-leave/apply-leave.component';
@@ -14,7 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { JsonPipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -22,7 +21,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     NavigationComponent,
-    SideNavigationComponent,
     LoginComponent,
     DashboardComponent,
     ApplyLeaveComponent,
@@ -40,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -13,12 +13,12 @@ app.use('/',router);
 
 app.use('/setUpDb' , async(req,res)=>{
     try {
-        console.log("first");
+        console.log("setting up db");
         let data=await dbsetup.setUpDb();
         res.send(data);
     } catch (error) {
         console.log(error);
-        res.send("Error 1");
+        res.send("Error in setting up DB");
     }
 })
 

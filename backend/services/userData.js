@@ -13,6 +13,17 @@ userDb.getUsers=async()=>{
     }
 };
 
+userDb.getManagers=async()=>{
+    let managers=await userData.getAllManagers();
+    if(managers){
+        return managers;
+    }else{
+        let err=new Error("Error occured in getManagers of userData service...");
+        err.status=401;
+        throw err;
+    }
+};
+
 userDb.getLeaves=async()=>{
     let leaves=await userData.getTotalLeaves();
     if(leaves){

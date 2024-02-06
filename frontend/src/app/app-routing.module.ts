@@ -6,15 +6,17 @@ import { ManageLeaveComponent } from './manage-leave/manage-leave.component';
 import { HolidayCalenderComponent } from './holiday-calender/holiday-calender.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path:"" , component:DashboardComponent},
-  {path:"login" , component:LoginComponent},
-  {path:"dashboard" , component:DashboardComponent},
-  {path:"apply-leave" , component:ApplyLeaveComponent},
-  {path:"manage-leave" , component:ManageLeaveComponent},
-  {path:"holiday-calender" , component:HolidayCalenderComponent},
-  {path:"profile" , component:ProfileComponent}
+        {path:'' , component:DashboardComponent , canActivate:[authGuard]},
+        {path:"login" , component:LoginComponent },
+        {path:"dashboard/:userName" , component:DashboardComponent , canActivate:[authGuard]},
+        {path:"apply-leave/:userName" , component:ApplyLeaveComponent , canActivate:[authGuard]},
+        {path:"manage-leave/:userName" , component:ManageLeaveComponent , canActivate:[authGuard]},
+        {path:"holiday-calender" , component:HolidayCalenderComponent, canActivate:[authGuard]},
+        {path:"profile/:userName" , component:ProfileComponent , canActivate:[authGuard] }
+
 
 ];
 

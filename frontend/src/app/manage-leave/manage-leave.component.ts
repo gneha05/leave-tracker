@@ -1,5 +1,8 @@
 import { Component , OnInit , Directive, EventEmitter, Input, Output, QueryList, ViewChildren} from '@angular/core';
 import { EmployeesService } from '../api/employees.service';
+import { SharedDataService } from '../shared/shared-data.service';
+
+
 
 export type SortColumn = keyof any | ''; // Use 'any' as the type for columns
 export type SortDirection = 'asc' | 'desc' | '';
@@ -40,6 +43,7 @@ export class NgbdSortableHeader {
 })
 export class ManageLeaveComponent implements OnInit {
   empData:any;
+  username:any;
   desiredEmpId:any;
   leaveHistory:any=[];
 
@@ -63,13 +67,20 @@ export class ManageLeaveComponent implements OnInit {
     }
   }
   
-  constructor(private empServ:EmployeesService){}
+  constructor(private empServ:EmployeesService ,private sharedDataService: SharedDataService){}
 
   ngOnInit(): void {
+
+    this.sharedDataService.currentUserName.subscribe(userName => {
+      this.username = userName;
+      console.log(this.username);
+    });
+
+
     this.empServ.getEmployees().subscribe((data:any)=>{
       this.empData=data;
       console.log(this.empData);
-      const desiredEmp=this.empData.find((employee:any)=> employee.userName === 'j.doe');
+      const desiredEmp=this.empData.find((employee:any)=> employee.userName === this.username);
       this.desiredEmpId=desiredEmp.id;
 
       console.log(this.desiredEmpId);

@@ -84,13 +84,7 @@ const empDB=[
         "password": "12345@qwerty",
         "position": "Project Manager",
         "unit": "Management",
-        "manager": {
-          "id": "108",
-          "fullName": "Kenny Gomez",
-          "position": "Senior project manager",
-          "mobile": "+12342997153",
-          "emailId": "kenny.g12@gmail.com"
-        },
+        "managerId":"103",
         "address": {
           "street": "123 Main St",
           "city": "Nytown",
@@ -149,13 +143,7 @@ const empDB=[
         "password": "QWERTY@92",
         "position": "Marketing Specialist",
         "unit": "Marketing",
-        "manager": {
-          "id": "111",
-          "fullName": "Michael P.",
-          "position": "Project manager",
-          "mobile": "+13349283744",
-          "emailId": "michp_23@gmail.com"
-        },
+        "managerId":"104",
         "address": {
           "street": "789 Pine Blvd",
           "city": "Cityville",
@@ -208,6 +196,37 @@ const empDB=[
         ]
       }
 ];
+
+const managerDB=[
+  {  
+    "id":"101",
+    "fullName":"Alex Johnson",
+    "position":"Project Manager",
+    "mobile":"+91-8877551199",
+    "emailId":"a.johnson@gmail.com"
+  },
+  {  
+    "id":"103",
+    "fullName":"Preeti Sharma",
+    "position":"Lead Consultant",
+    "mobile":"+91-5544996622",
+    "emailId":"preeti.sharma@gmail.com"
+  },
+  {  
+    "id":"104",
+    "fullName":"Annie K.",
+    "position":"Project Manager",
+    "mobile":"+91-5544996644",
+    "emailId":"annie23@yahoo.com"
+  },
+  {  
+    "id":"104",
+    "fullName":"Martin D'sa",
+    "position":"Delivery Manager",
+    "mobile":"+91-8877551199",
+    "emailId":"m02.dsa@gmail.com"
+  }
+]
 
 const totalLeavesDB=[
     {
@@ -287,6 +306,10 @@ user.setUpDb=async()=>{
     await user.deleteMany();
     let userdata=await user.insertMany(empDB);
 
+    let mgr=await connection.getManagerData();
+    await mgr.deleteMany();
+    let mgrData=await mgr.insertMany(managerDB)
+
     let leaves=await connection.getTotalLeavesData();
     await leaves.deleteMany();
     let leaveData=await leaves.insertMany(totalLeavesDB);
@@ -296,8 +319,8 @@ user.setUpDb=async()=>{
     let holidayData=await holidays.insertMany(holidayCalendarDB);
 
 
-    if (userdata && leaveData && holidayData) {
-      return { userdata, leaveData, holidayData };
+    if (userdata && leaveData && holidayData && mgrData) {
+      return { userdata, leaveData, holidayData , mgrData};
     }else{
         let err=new Error("Employees insertion failed");
         err.status=400;
@@ -312,6 +335,17 @@ user.getAllUsers = async()=>{
         return data;
     }else{
         let err=new Error("Employess not found..");
+        throw err;
+    }
+};
+
+user.getAllManagers = async()=>{
+    let model=await connection.getManagerData();
+    let data=await model.find({}, {_id:0});
+    if(data){
+        return data;
+    }else{
+        let err=new Error("Managers not found..");
         throw err;
     }
 };

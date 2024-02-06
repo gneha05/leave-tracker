@@ -12,6 +12,15 @@ router.get('/employees' , async(req,res,next)=>{
     }
 });
 
+router.get('/managers' , async(req,res,next)=>{
+    try {
+        let managers=await userService.getManagers();
+        res.send(managers);
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.get('/totalLeaves' , async(req,res,next)=>{
     try {
         let leaves=await userService.getLeaves();
@@ -25,6 +34,23 @@ router.get('/holidays' , async(req,res,next)=>{
     try {
         let holidays=await userService.getHolidays();
         res.send(holidays);
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.put('/employees/:updatedEmployee' , async(req,res,next)=>{
+    try {
+        const employeeId=req.params.empId;
+        const updatedEmployee=req.body;
+        let empdata=await userService.updateLeaveHistory(employeeId , updatedEmployee);
+
+        res.json({
+            message:`Availed leaves data for Emp:${employeeId} updated successfully`
+        });
+        res.status=200;
+
+
     } catch (error) {
         next(error);
     }
