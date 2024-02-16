@@ -74,36 +74,24 @@ export class EmployeesService {
     return [];
   }
 
-  updateLeaveHistory(empId:string , leaveHistory:any[]):Observable<any>{
-    const updatedEmployee={
-      ...this.empLeaveData.find((emp:any)=>emp.id === empId),
-      leaveHistory:leaveHistory
-    };
-    return this.http.put(`http://localhost:4000/employees/${empId}` , updatedEmployee);
+  updateLeaveHistory(empId:string , updatedLeaveHist:any[]):Observable<any>{
+    return this.http.put(`http://localhost:4000/employees/${empId}/update-leave-history` , updatedLeaveHist);
   }
 
-  deleteLeaveRecord(empId:string , deleteRec:any[]):Observable<any>{
-    const updatedLeaveHist={
-      ...this.empLeaveData.find((emp:any)=>emp.id === empId),
-      leaveHistory:deleteRec
-    };
-    return this.http.put(`http://localhost:4000/employees/${empId}` , updatedLeaveHist);
+  // deleteLeaveRecord(empId:string , deleteRec:any[]):Observable<any>{
+  //   const updatedLeaveHist={
+  //     ...this.empLeaveData.find((emp:any)=>emp.id === empId),
+  //     leaveHistory:deleteRec
+  //   };
+  //   return this.http.put(`http://localhost:4000/employees/${empId}` , updatedLeaveHist);
+  // }
+
+  updateAvailedLeaves(empId:string , updatedAvlLeave:any[]):Observable<any>{
+    return this.http.put(`http://localhost:4000/employees/${empId}/update-leave` , updatedAvlLeave);
   }
 
-  updateAvailedLeaves(empId:string , avlLeaves:any[]):Observable<any>{
-    const updatedAvlLeave={
-      ...this.empLeaveData.find((emp:any)=>emp.id === empId),
-      availedLeaves:avlLeaves
-    };
-    return this.http.put(`http://localhost:4000/employees/${empId}` , updatedAvlLeave);
-  }
-
-  updateLeaveStatus(empId:string , leaveStat:any[]):Observable<any>{
-    const updatedLeaveStat={
-      ...this.empLeaveData.find((emp:any)=>emp.id === empId),
-      leaveStatus:leaveStat
-    };
-    return this.http.put(`http://localhost:4000/employees/${empId}` , updatedLeaveStat);
+  updateLeaveStatus(empId:string , updatedLeaveStat:any[]):Observable<any>{
+    return this.http.put(`http://localhost:4000/employees/${empId}/update-leave-status` , updatedLeaveStat);
   }
 
 }

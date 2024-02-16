@@ -370,6 +370,36 @@ user.getHolidayList=async()=>{
     let err=new Error("Employess not found..");
     throw err;
 }
-}
+};
+
+user.updateAvlLeaves=async(empId,updatedAvlLeave)=>{
+  let model=await connection.getEmpData();
+  let updatedAvailLeave=await model.updateOne({id: empId} , { $set: { availedLeaves: updatedAvlLeave }});
+  if(updatedAvailLeave){
+    return updatedAvailLeave;
+  }else{
+    return null;
+  }
+};
+
+user.updateLeaveStat=async(empId,updatedLeaveStatus)=>{
+  let model=await connection.getEmpData();
+  let updatedstat=await model.updateOne({id:empId} , { $set:{ leaveStatus : updatedLeaveStatus}});
+  if(updatedstat){
+    return updatedstat;
+  }else{
+    return null;
+  }
+};
+
+user.updateLeaveHistory=async(empId,updatedLeaveHist)=>{
+  let model=await connection.getEmpData();
+  let updatedsHist=await model.updateOne({id:empId} , { $set:{ leaveHistory : updatedLeaveHist}});
+  if(updatedsHist){
+    return updatedsHist;
+  }else{
+    return null;
+  }
+};
 
 module.exports=user;

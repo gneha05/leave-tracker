@@ -22,7 +22,7 @@ export class ManagerService {
 
    getManagerById(id:String){
       this.specificManager=this.managerData.find((mgr:any)=>mgr.id===id);
-      // console.log(this.specificManager);
+      console.log(this.specificManager);
       const mgrName=this.specificManager.fullName;
       return mgrName;
    }

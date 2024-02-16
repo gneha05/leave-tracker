@@ -39,21 +39,54 @@ router.get('/holidays' , async(req,res,next)=>{
     }
 });
 
-router.put('/employees/:updatedEmployee' , async(req,res,next)=>{
+router.put('/employees/:empId/update-leave', async(req,res,next)=>{
     try {
-        const employeeId=req.params.empId;
-        const updatedEmployee=req.body;
-        let empdata=await userService.updateLeaveHistory(employeeId , updatedEmployee);
+        const empId=req.params.empId;
+        const updatedAvlLeave=req.body;
+        let empdata=await userService.updateAvlLeave(empId , updatedAvlLeave);
 
         res.json({
-            message:`Availed leaves data for Emp:${employeeId} updated successfully`
+            message:`Availed leaves data for Emp:${empId} updated successfully`
         });
         res.status=200;
-
 
     } catch (error) {
         next(error);
     }
+});
+
+
+router.put('/employees/:empId/update-leave-status' , async(req,res,next)=>{
+    try {
+        const empId=req.params.empId;
+        const updatedLeaveStatus=req.body;
+        console.log(req.body);
+        let empdata=await userService.updateLeaveStat(empId , updatedLeaveStatus);
+
+        res.json({
+            message:`Leave status for Emp:${empId} updated successfully`
+        });
+        res.status=200;
+    } catch (error) {
+        next(error);
+    }
+       
+});
+
+router.put('/employees/:empId/update-leave-history' , async(req,res,next)=>{
+    try {
+        const empId=req.params.empId;
+        const updatedLeaveHist=req.body;
+        let empdata=await userService.updateLeaveHist(empId , updatedLeaveHist);
+
+        res.json({
+            message:`Leave history for Emp:${empId} updated successfully`
+        });
+        res.status=200;
+    } catch (error) {
+        next(error);
+    }
+       
 });
 
 router.get('/')

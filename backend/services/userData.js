@@ -46,4 +46,39 @@ userDb.getHolidays=async()=>{
     }
 }
 
+userDb.updateAvlLeave=async(empId,updatedAvlLeave)=>{
+    let updatedAvail=await userData.updateAvlLeaves(empId,updatedAvlLeave);
+    if(updatedAvail){
+        return updatedAvail;
+    }else{
+        let err=new Error("Error occured in updating availed leaves...");
+        err.status=401;
+        throw err;
+    }
+};
+
+userDb.updateLeaveStat=async(empId,updatedLeaveStatus)=>{
+    let updatedStat=await userData.updateLeaveStat(empId, updatedLeaveStatus);
+    if(updatedStat){
+        return updatedStat;
+    }else{
+        let err=new Error("Error occured in updating leave status...");
+        err.status=401;
+        throw err;
+    }
+};
+
+userDb.updateLeaveHist=async(empId,updatedLeaveHist)=>{
+    let updatedHistory=await userData.updateLeaveHistory(empId, updatedLeaveHist);
+    if(updatedHistory){
+        return updatedHistory;
+    }else{
+        let err=new Error("Error occured in updating leave history...");
+        err.status=401;
+        throw err;
+    }
+};
+
+
+
 module.exports=userDb;

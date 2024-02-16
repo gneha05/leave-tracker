@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HolidaysService } from '../api/holidays.service';
 import { SharedDataService } from '../shared/shared-data.service';
 import { ManagerService } from '../api/manager.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-apply-leave',
@@ -54,8 +55,8 @@ export class ApplyLeaveComponent implements OnInit {
       managerName:[{value:'' , disabled:true}],
       leaveBalance:[{value:'' , disabled:true}],
       leaveType:[{value:this.selectedLeaveType}],
-      from:[],
-      to:[],
+      from:[{value:''}],
+      to:[{value:''}],
       noOfDays:[{value:'' , disabled:true}],
       remark:[]
     });
@@ -170,7 +171,6 @@ export class ApplyLeaveComponent implements OnInit {
 
     if(Object.prototype.hasOwnProperty.call(this.allAvailedLeaves , formattedLeaveType)){
       (this.allAvailedLeaves as any)[formattedLeaveType]=this.updatedAvailLeaves;
-      console.log(this.allAvailedLeaves);
       
     }else{
       console.log("property not found...");
@@ -201,7 +201,6 @@ export class ApplyLeaveComponent implements OnInit {
   calculateBusinessDays(startDate:any , endDate:any):number{
     let businessDays=0;
 
-     // Extract year, month, and day from ngbDatepicker values
   const startYear = startDate.year;
   const startMonth = startDate.month - 1; // Adjust for zero-based month
   const startDay = startDate.day;
@@ -286,8 +285,8 @@ export class ApplyLeaveComponent implements OnInit {
     setTimeout(()=>{
       const formData={
         ...data,
-        from:this.datePipe.transform(data.from.date , 'MM/dd/yyy'),
-        to:this.datePipe.transform(data.to.date , 'MM/dd/yyy'),
+        from: new Date(data.from.year, data.from.month - 1, data.from.day).toISOString(),
+        to: new Date(data.to.year, data.to.month - 1, data.to.day).toISOString(),
         noOfDays:this.noOfLeaves,
         status:"Pending",
         leaveId:this.generateLeaveId(),
@@ -299,6 +298,7 @@ export class ApplyLeaveComponent implements OnInit {
       this.leaveAppForm.markAllAsTouched();
 
       this.empServ.updateAvailedLeaves(this.desiredEmpId , this.allAvailedLeaves).subscribe(()=>{
+        
         console.log("Availed leaves data updated successfully");
         
       }, err=>{
